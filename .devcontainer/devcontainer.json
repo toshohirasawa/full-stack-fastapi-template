@@ -33,7 +33,10 @@
 		// host both backend and frontend in the same container
 		"ghcr.io/devcontainers/features/node:1": {
 			"version": "24"
-		}
+		},
+		// tools
+		"ghcr.io/devcontainers/features/github-cli": {},
+		"ghcr.io/anthropics/devcontainer-features/claude-code": {}
 	},
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
@@ -46,7 +49,7 @@
 	// "shutdownAction": "none",
 
 	// Uncomment the next line to run commands after the container is created.
-	// "postCreateCommand": "cat /etc/os-release",
+	"postCreateCommand": "bash /workspaces/.devcontainer/post-create.sh",
 
 	// Configure tool-specific properties.
 	// "customizations": {},
@@ -55,6 +58,14 @@
 	// "remoteUser": "devcontainer"
 
 	"remoteEnv": {
+		"CLAUDE_CONFIG_DIR": "/home/vscode/.claude",
 		"VITE_API_URL": "http://localhost:8000"
-	}
+	},
+
+	"mounts": [
+		"source=${localEnv:HOME}/.config/devcontainer/claude-code/bashhistory,target=/commandhistory,type=bind",
+		"source=${localEnv:HOME}/.config/devcontainer/claude-code/config,target=/home/vscode/.claude,type=bind",
+		"source=${localEnv:HOME}/.config/devcontainer/codex/config,target=/home/vscode/.codex,type=bind",
+		"source=${localEnv:HOME}/.config/devcontainer/gh,target=/home/vscode/.config/gh,type=bind"
+	]
 }

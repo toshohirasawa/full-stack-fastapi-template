@@ -36,7 +36,7 @@ docker compose logs backend
 
 ## Dev Container Development
 
-Run `Dev Containers: Rebuild Container` command to build and open the workspace in the dev container.
+Run `Dev Containers: Rebuild and Reopen in Container` command to build and open the workspace in the dev container.
 
 > [!IMPORTANT]
 > As Dev Container does not support a part of its features in a multi-devcontainer environment, use the backend container for both backend and frontend servers.
